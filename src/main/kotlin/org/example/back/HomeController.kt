@@ -6,7 +6,7 @@ import software.amazon.awssdk.services.s3.S3Client
 
 @RestController
 class HomeController(
-    private val s3Client: S3Client
+    private val s3Serivce: S3Service
 ) {
     @GetMapping
     fun main(): String {
@@ -15,7 +15,7 @@ class HomeController(
 
     @GetMapping("/buckets")
     fun buckets(): List<String> {
-        return s3Client.listBuckets().buckets().map { it.name() }
+        return s3Serivce.getBucketNames()
     }
 
 }
